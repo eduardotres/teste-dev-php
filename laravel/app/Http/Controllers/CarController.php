@@ -35,7 +35,9 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Car::create($request->all());
+        return redirect()->route('cars.index')
+        ->with('success', 'Salvo com sucesso!');
     }
 
     /**
@@ -69,7 +71,9 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car)
     {
-        //
+        $car->update($request->all());
+        return redirect()->route('cars.index')
+                    ->with('success', 'Atualizado com sucesso!');
     }
 
     /**
@@ -80,6 +84,6 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
-        //
+        $car->delete();
     }
 }
